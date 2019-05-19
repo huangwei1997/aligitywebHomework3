@@ -1,5 +1,7 @@
 package com.hw.aligityweb;
 
+import com.hw.domain.Task;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +39,26 @@ public class TaskController {
         return  list;
     }
 
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET)
+    public Task getTaskById(@PathVariable("id") int id){
+        for(Task task : list){
+            if(task.getId() == id){
+                return task;
+            }
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/tasks/{id}", method = RequestMethod.DELETE)
+    public String deleteTaskById(@PathVariable("id") int id){
+        for (Task task : list){
+            if(task.getId() == id){
+                list.remove(task);
+                return "删除成功";
+            }
+        }
+        return "删除失败";
+    }
 
     private List<Task> initTasks() {
         for (int i = 1; i <= 4; i++) {

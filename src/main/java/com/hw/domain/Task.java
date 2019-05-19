@@ -1,4 +1,4 @@
-package com.hw.aligityweb;
+package com.hw.domain;
 
 import org.springframework.stereotype.Component;
 
